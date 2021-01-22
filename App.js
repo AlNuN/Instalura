@@ -5,23 +5,31 @@ import {
   ScrollView,
   Dimensions,
   StyleSheet,
+  FlatList,
 } from 'react-native';
 
 const largura = Dimensions.get('screen').width;
 
+const informacoes = [
+  { usuario: 'Matheus' },
+  { usuario: 'Luanne' },
+];
+
 const App = () => {
   return (
     <ScrollView>
-      <Text>Matheus Nunes</Text>
-      <Image
-        source={require('./res/img/alura.jpg')}
-        style={estilo.imagem}
-        ></Image>
-      <Text>Luanne Sales</Text>
-      <Image
-        source={require('./res/img/alura.jpg')}
-        style={estilo.imagem}
-      ></Image>
+      <FlatList
+        data={informacoes}
+        renderItem={({ item }) =>
+          <>
+            <Text>{item.usuario}</Text>
+            <Image
+              source={require('./res/img/alura.jpg')}
+              style={estilo.imagem}
+            />
+          </>
+        }
+      />
     </ScrollView>
   );
 };
