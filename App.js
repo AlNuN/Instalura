@@ -1,44 +1,29 @@
 import React from 'react';
+// eslint-disable-next-line prettier/prettier
 import {
-  Text,
-  Image,
-  ScrollView,
-  Dimensions,
-  StyleSheet,
   FlatList,
 } from 'react-native';
-
-const largura = Dimensions.get('screen').width;
+import { Cabecalho } from './src/Components/Cabecalho';
+import { Foto } from './src/Components/Foto';
 
 const informacoes = [
-  { usuario: 'Matheus' },
-  { usuario: 'Luanne' },
+  { id: 1, usuario: 'Matheus' },
+  { id: 2, usuario: 'Luanne' },
 ];
 
 const App = () => {
   return (
-    <ScrollView>
-      <FlatList
-        data={informacoes}
-        renderItem={({ item }) =>
-          <>
-            <Text>{item.usuario}</Text>
-            <Image
-              source={require('./res/img/alura.jpg')}
-              style={estilo.imagem}
-            />
-          </>
-        }
-      />
-    </ScrollView>
+    <FlatList
+      data={informacoes}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) => (
+        <>
+          <Cabecalho nomeUsuario={item.usuario} />
+          <Foto />
+        </>
+      )}
+    />
   );
 };
-
-const estilo = StyleSheet.create({
-  imagem: {
-    width: largura,
-    height: largura,
-  },
-});
 
 export default App;
