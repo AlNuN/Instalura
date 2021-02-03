@@ -6,6 +6,7 @@ import {
 import lerFotos from './src/api/feed';
 import { Cabecalho } from './src/Components/Cabecalho';
 import { Foto } from './src/Components/Foto';
+import { Comentarios } from './src/Components/Comentarios';
 
 const App = () => {
   const [fotos, setFotos] = useState([]);
@@ -29,6 +30,7 @@ const App = () => {
             descricao={item.description}
             qntLikes={item.likes}
           />
+          <Comentarios comentarios={item.comentarios} />
         </>
       )}
     />

@@ -6,22 +6,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { curtirFoto, imgLike } from '../../api/curtidas';
 import estilo from './estilo';
-
-const ImgLike = (curtiu) =>
-  curtiu
-    ? require('../../../res/img/s2-checked.png')
-    : require('../../../res/img/s2.png');
 
 const Foto = ({ urlFoto, descricao, qntLikes }) => {
   const [curtiu, setCurtiu] = useState(false);
   const [likes, setLikes] = useState(qntLikes);
 
-  const curtirFoto = () => {
-    let qnt = likes;
-    curtiu ? qnt-- : qnt++;
+  const clicouCurtir = () => {
+    const [novoEstCurtiu, qnt] = curtirFoto(curtiu, likes);
     setLikes(qnt);
-    setCurtiu(!curtiu);
+    setCurtiu(novoEstCurtiu);
   };
 
   return (
@@ -33,10 +28,10 @@ const Foto = ({ urlFoto, descricao, qntLikes }) => {
       <Text>{descricao}</Text>
       <View style={estilo.viewLike}>
         <TouchableOpacity
-          onPress={curtirFoto}
+          onPress={clicouCurtir}
         >
           <Image
-            source={ImgLike(curtiu)} 
+            source={imgLike(curtiu)} 
             style={estilo.like}
           />
         </TouchableOpacity>
