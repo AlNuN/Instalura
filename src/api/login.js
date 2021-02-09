@@ -18,7 +18,7 @@ const efetuarLogin = async (usuario, senha) => {
   const resposta = await fetch(`http://${ip}:3030/users/login`, cabecalhoHTTP);
 
   if (resposta.ok) {
-    // utilizar token jwt
+    return resposta.headers.get('x-access-token');
   } else {
     throw new Error('Não foi possível logar');
   }
