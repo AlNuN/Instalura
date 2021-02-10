@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import Feed from './src/Views/Feed/Feed';
 import Login from './src/Views/Login/Login';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -12,7 +13,12 @@ const navigator = createStackNavigator({
 const AppContainer = createAppContainer(navigator);
 
 const App = () => {
-  return <AppContainer />;
+  return (
+    <>
+      <AppContainer />
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
+    </>
+  );
 };
 
 export default App;

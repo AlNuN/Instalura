@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 import estilo from './estilo';
 
-const Comentarios = ({ comentarios, adicionarComentario }) => {
+const Comentarios = ({ comentarios, adicionarComentario, nomeUsuario }) => {
   const [estComentarios, setComentarios] = useState(comentarios);
 
   const comentar = () => {
     campoInput.clear();
 
-    const novoComentario = adicionarComentario(conteudoCampoInput, 'Matheus');
+    const novoComentario = adicionarComentario(conteudoCampoInput, nomeUsuario);
 
     setComentarios([...estComentarios, novoComentario]);
   };

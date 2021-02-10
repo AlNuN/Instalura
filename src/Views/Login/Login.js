@@ -19,7 +19,7 @@ const Login = ({ navigation }) => {
     try {
       const token = await efetuarLogin(usuario, senha);
       await AsyncStorage.setItem('instalura_token', token);
-      navigation.push('Feed');
+      navigation.replace('Feed', { nome: usuario });
     } catch (e) {
       setMensagemErro(e.message);
     }
@@ -49,6 +49,13 @@ const Login = ({ navigation }) => {
       </View>
     </>
   );
+};
+
+Login.navigationOptions = () => {
+  const opcoes = {
+    title: 'Login',
+  };
+  return opcoes;
 };
 
 export default Login;
